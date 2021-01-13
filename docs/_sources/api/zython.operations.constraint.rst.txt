@@ -1,0 +1,37 @@
+zython.operations.constraint package
+====================================
+
+Submodules
+----------
+
+zython.operations.constraint.constraint module
+----------------------------------------------
+
+.. automodule:: zython.operations.constraint.constraint
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zython.operations.constraint.forall module
+------------------------------------------
+
+.. automodule:: zython.operations.constraint.forall
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zython.operations.constraint.funcs module
+-----------------------------------------
+
+.. automodule:: zython.operations.constraint.funcs
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: zython.operations.constraint
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Four color theorem &#8212; zython  documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="CryptArithmetic Problem" href="send_more_money.html" />
+    <link rel="prev" title="Getting Started" href="../getting_started.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="send_more_money.html" title="CryptArithmetic Problem"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../getting_started.html" title="Getting Started"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">zython  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../getting_started.html" accesskey="U">Getting Started</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Four color theorem</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="four-color-theorem">
+<h1>Four color theorem<a class="headerlink" href="#four-color-theorem" title="Permalink to this headline">¶</a></h1>
+<p>There is a mathematically proved theorem called <a class="reference external" href="https://en.wikipedia.org/wiki/Four_color_theorem">Four color theorem</a>,
+which says that any geographical map can be colored with just 4 colours in the manner every two adjacent regions will
+have different colours.</p>
+<p>Let find such coloring for <a class="reference external" href="https://en.wikipedia.org/wiki/Belarus">Belarus</a>.</p>
+<div class="section" id="belarus-map-python-model">
+<h2>Belarus Map Python Model<a class="headerlink" href="#belarus-map-python-model" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../_images/Belarus.png"><img alt="Belarus map" src="../../_images/Belarus.png" style="width: 600px;" /></a>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">zython</span> <span class="k">as</span> <span class="nn">zn</span>
+
+
+<span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">zn</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hrodna</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">brest</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vitsebsk</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minsk</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mahilyow</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">homel</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">brest</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hrodna</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">brest</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">minsk</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">brest</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">homel</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">hrodna</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">minsk</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hrodna</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vitsebsk</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">vitsebsk</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">minsk</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vitsebsk</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mahilyow</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">minsk</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mahilyow</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minsk</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">homel</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">mahilyow</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">homel</span><span class="p">]</span>
+
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">()</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">solve_satisfy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Solution(hrodna=3, brest=2, vitsebsk=1, minsk=0, mahilyow=2, homel=1)
+</pre></div>
+</div>
+</div>
+<div class="section" id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
+<p>So we can paint map of Belarus, e.g. in the following way (red is 0, green is 1, blue is 2, yellow is 3):</p>
+<a class="reference internal image-reference" href="../../_images/Belarus_colored.png"><img alt="Australia map" src="../../_images/Belarus_colored.png" style="width: 600px;" /></a>
+<p>But in some cases just 3 colours are enough. Let’s look at two example and try to find such coloring on the map of
+<a class="reference external" href="https://en.wikipedia.org/wiki/Australia">Australia</a>.</p>
+<a class="reference internal image-reference" href="../../_images/Australia.svg"><img alt="Australia map" src="../../_images/Australia.svg" width="600" /></a>
+</div>
+<div class="section" id="australia-map-python-model">
+<h2>Australia Map Python Model<a class="headerlink" href="#australia-map-python-model" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">zython</span> <span class="k">as</span> <span class="nn">zn</span>
+
+
+<span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">zn</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nt</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wa</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sa</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nsw</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">wa</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wa</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sa</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">nt</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sa</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nt</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">sa</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sa</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nsw</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sa</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nsw</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">nsw</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">]</span>
+
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">()</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">solve_satisfy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Solution(nt=1, wa=2, sa=0, q=2, nsw=1, v=2, t=0)
+</pre></div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Four color theorem</a><ul>
+<li><a class="reference internal" href="#belarus-map-python-model">Belarus Map Python Model</a></li>
+<li><a class="reference internal" href="#solution">Solution</a></li>
+<li><a class="reference internal" href="#australia-map-python-model">Australia Map Python Model</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../getting_started.html"
+                        title="previous chapter">Getting Started</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="send_more_money.html"
+                        title="next chapter">CryptArithmetic Problem</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/guides/getting_started/color_map.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="send_more_money.html" title="CryptArithmetic Problem"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../getting_started.html" title="Getting Started"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">zython  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../getting_started.html" >Getting Started</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Four color theorem</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Artyom Kaltovich.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.1.
+    </div>
+  </body>
+</html>

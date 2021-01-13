@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bakery Profit Maximization &#8212; zython  documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Travel Salesman Problem" href="tsp.html" />
+    <link rel="prev" title="Optimizing some value (Minimize/Maximize Objective)" href="../max_min.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tsp.html" title="Travel Salesman Problem"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../max_min.html" title="Optimizing some value (Minimize/Maximize Objective)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">zython  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../max_min.html" accesskey="U">Optimizing some value (Minimize/Maximize Objective)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Bakery Profit Maximization</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bakery-profit-maximization">
+<h1>Bakery Profit Maximization<a class="headerlink" href="#bakery-profit-maximization" title="Permalink to this headline">¶</a></h1>
+<p>Let’s imagine you’ve decided host charity event and you will sold cakes to raise some money. You have some amount of
+ingredients and your goal is to maximize profit. So you should find such combination of different cakes, which you can
+make with your amount of supplies and raise maximum amount of money to donate it to charity organization.</p>
+<a class="reference internal image-reference" href="../../_images/cupcakes.jpg"><img alt="Cupcakes (Source: https://www.freepik.com/lifeforstock )" src="../../_images/cupcakes.jpg" style="width: 600px;" /></a>
+<div class="section" id="python-model">
+<h2>Python Model<a class="headerlink" href="#python-model" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">import</span> <span class="nn">zython</span> <span class="k">as</span> <span class="nn">zn</span>
+
+
+<span class="k">class</span> <span class="nc">ProfitMaximizer</span><span class="p">(</span><span class="n">zn</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recipes</span><span class="p">,</span> <span class="n">available</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cakes</span> <span class="o">=</span> <span class="n">zn</span><span class="o">.</span><span class="n">Array</span><span class="p">(</span><span class="n">zn</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">recipes</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">recipe</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">cake</span> <span class="k">for</span> <span class="n">recipe</span><span class="p">,</span> <span class="n">cake</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">recipes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cakes</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">available</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">available</span><span class="p">))]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span> <span class="o">+=</span> <span class="p">[</span><span class="n">cake</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">cake</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cakes</span><span class="p">]</span>
+
+
+<span class="n">recipe</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;recipe&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;flour&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;sugar&quot;</span><span class="p">,</span> <span class="s2">&quot;butter&quot;</span><span class="p">,</span> <span class="s2">&quot;cocoa&quot;</span><span class="p">))</span>
+<span class="n">recipes</span> <span class="o">=</span> <span class="p">((</span><span class="n">recipe</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">recipe</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">75</span><span class="p">)),</span>
+           <span class="p">(</span><span class="n">recipe</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">recipe</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">75</span><span class="p">),</span> <span class="n">recipe</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+           <span class="p">)</span>
+<span class="n">prices</span> <span class="o">=</span> <span class="p">((</span><span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">),</span>
+          <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">))</span>
+<span class="n">available</span> <span class="o">=</span> <span class="p">(</span><span class="n">recipe</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+             <span class="n">recipe</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">250000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">75000</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">recipes</span><span class="p">,</span> <span class="n">prices</span><span class="p">,</span> <span class="n">available</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">ProfitMaximizer</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">solve_maximize</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">cake</span> <span class="o">*</span> <span class="n">price</span> <span class="k">for</span> <span class="n">cake</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">cakes</span><span class="p">,</span> <span class="n">p</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Solution(objective=1700, cakes=[2, 2])
+Solution(objective=199850, cakes=[286, 141, 1])
+</pre></div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Bakery Profit Maximization</a><ul>
+<li><a class="reference internal" href="#python-model">Python Model</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../max_min.html"
+                        title="previous chapter">Optimizing some value (Minimize/Maximize Objective)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tsp.html"
+                        title="next chapter">Travel Salesman Problem</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/guides/max_min/cakes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tsp.html" title="Travel Salesman Problem"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../max_min.html" title="Optimizing some value (Minimize/Maximize Objective)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">zython  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../max_min.html" >Optimizing some value (Minimize/Maximize Objective)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Bakery Profit Maximization</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Artyom Kaltovich.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.1.
+    </div>
+  </body>
+</html>

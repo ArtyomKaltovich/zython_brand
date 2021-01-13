@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>zython package &#8212; zython  documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="zython.operations package" href="zython.operations.html" />
+    <link rel="prev" title="zython" href="modules.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="zython.operations.html" title="zython.operations package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="zython"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">zython  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">zython</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">zython package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="zython-package">
+<h1>zython package<a class="headerlink" href="#zython-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="zython.operations.html">zython.operations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="zython.operations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zython.operations.html#module-zython.operations.functions_and_predicates">zython.operations.functions_and_predicates module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zython.operations.html#module-zython.operations">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="zython.var_par.html">zython.var_par package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="zython.var_par.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zython.var_par.html#module-zython.var_par.array">zython.var_par.array module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zython.var_par.html#module-zython.var_par.par">zython.var_par.par module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zython.var_par.html#module-zython.var_par.types">zython.var_par.types module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zython.var_par.html#module-zython.var_par.var">zython.var_par.var module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zython.var_par.html#module-zython.var_par">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-zython.model">
+<span id="zython-model-module"></span><h2>zython.model module<a class="headerlink" href="#module-zython.model" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="zython.model.Model">
+<em class="property">class </em><code class="sig-prename descclassname">zython.model.</code><code class="sig-name descname">Model</code><a class="headerlink" href="#zython.model.Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Base class for user-defined models to solve</p>
+<dl class="py method">
+<dt id="zython.model.Model.compile">
+<code class="sig-name descname">compile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">how_to_solve</span></em><span class="sig-paren">)</span><a class="headerlink" href="#zython.model.Model.compile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="zython.model.Model.constraints">
+<em class="property">property </em><code class="sig-name descname">constraints</code><a class="headerlink" href="#zython.model.Model.constraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="zython.model.Model.solve_maximize">
+<code class="sig-name descname">solve_maximize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">eq</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">all_solutions</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">result_as</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#zython.model.Model.solve_maximize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="zython.model.Model.solve_minimize">
+<code class="sig-name descname">solve_minimize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">eq</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">all_solutions</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">result_as</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#zython.model.Model.solve_minimize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="zython.model.Model.solve_satisfy">
+<code class="sig-name descname">solve_satisfy</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">all_solutions</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">result_as</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#zython.model.Model.solve_satisfy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds solution that satisfied constraints, or the error message if the model can’t be solved</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_solutions</strong> (<em>bool</em>) – If True all solutions will be returned.
+If False only the first solution is returned.
+Default values is False, so the model will return only one solution, as finding all of them can be
+calculation hard</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – If True the source code of the model will be print to stdout</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Result</strong> – result of the model solution, value of variables can be reached by dict syntax.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#zython.result.Result" title="zython.result.Result">Result</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="zython.model.Model.src">
+<em class="property">property </em><code class="sig-name descname">src</code><a class="headerlink" href="#zython.model.Model.src" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-zython.result">
+<span id="zython-result-module"></span><h2>zython.result module<a class="headerlink" href="#module-zython.result" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="zython.result.Result">
+<em class="property">class </em><code class="sig-prename descclassname">zython.result.</code><code class="sig-name descname">Result</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mzn_result</span></em><span class="sig-paren">)</span><a class="headerlink" href="#zython.result.Result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents model solution</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is supposed this class is used by package itself only, there should be no need for user to create it,
+but they can use this class as base class for their extensions.</p>
+</div>
+<dl class="py method">
+<dt id="zython.result.Result.original">
+<em class="property">property </em><code class="sig-name descname">original</code><a class="headerlink" href="#zython.result.Result.original" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="zython.result.as_original">
+<code class="sig-prename descclassname">zython.result.</code><code class="sig-name descname">as_original</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mnz_result</span></em><span class="sig-paren">)</span><a class="headerlink" href="#zython.result.as_original" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns original result, returned by minizinc-python</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-zython">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-zython" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">zython package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-zython.model">zython.model module</a></li>
+<li><a class="reference internal" href="#module-zython.result">zython.result module</a></li>
+<li><a class="reference internal" href="#module-zython">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="modules.html"
+                        title="previous chapter">zython</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="zython.operations.html"
+                        title="next chapter">zython.operations package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/zython.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="zython.operations.html" title="zython.operations package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="zython"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">zython  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >zython</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">zython package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Artyom Kaltovich.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.1.
+    </div>
+  </body>
+</html>
